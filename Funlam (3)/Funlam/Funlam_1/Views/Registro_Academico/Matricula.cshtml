@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Funlam_1.Models.detalle_persona_curso>
+@using Funlam_1.Logic
+@{
+    clsUsuarios u = new clsUsuarios();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@Html.Partial("Datos_Usuario",u.GetDetallesUsario(int.Parse(Session["UserID"].ToString())))
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.curso.materia.nombre_materia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.curso.materia.creditos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.curso.horario)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.curso.materia.nombre_materia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.curso.materia.creditos)
+        </td>
+       <td>
+           @Html.DisplayFor(modelItem => item.curso.horario)
+       </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Funlam_1.Models.descuento>
+
+@{
+    ViewBag.Title = "Descuentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Descuentos</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.respuesta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.periodo_academico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_solicitd)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.respuesta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.periodo_academico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_solicitd)
+        </td>
+      
+        
+    </tr>
+}
+
+</table>

@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbfunlamModelStoreContainer" CdmEntityContainer="dbfunlamEntities">
+    <EntitySetMapping Name="claseestilos">
+      <EntityTypeMapping TypeName="dbfunlamModel.claseestilo">
+        <MappingFragment StoreEntitySet="claseestilos">
+          <ScalarProperty Name="id_claseestilo" ColumnName="id_claseestilo" />
+          <ScalarProperty Name="nombre_estilo" ColumnName="nombre_estilo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cursos">
+      <EntityTypeMapping TypeName="dbfunlamModel.curso">
+        <MappingFragment StoreEntitySet="cursos">
+          <ScalarProperty Name="matricula" ColumnName="matricula" />
+          <ScalarProperty Name="premarticula" ColumnName="premarticula" />
+          <ScalarProperty Name="Id_curso" ColumnName="Id_curso" />
+          <ScalarProperty Name="total_cupos" ColumnName="total_cupos" />
+          <ScalarProperty Name="cupos_actuales" ColumnName="cupos_actuales" />
+          <ScalarProperty Name="id_materia" ColumnName="id_materia" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+          <ScalarProperty Name="horario" ColumnName="horario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="descuentos">
+      <EntityTypeMapping TypeName="dbfunlamModel.descuento">
+        <MappingFragment StoreEntitySet="descuentos">
+          <ScalarProperty Name="id_descuento" ColumnName="id_descuento" />
+          <ScalarProperty Name="respuesta" ColumnName="respuesta" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="periodo_academico" ColumnName="periodo_academico" />
+          <ScalarProperty Name="fecha_solicitd" ColumnName="fecha_solicitd" />
+          <ScalarProperty Name="id_usuarios" ColumnName="id_usuarios" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalle_persona_curso">
+      <EntityTypeMapping TypeName="dbfunlamModel.detalle_persona_curso">
+        <MappingFragment StoreEntitySet="detalle_persona_curso">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="Id_persona_curso" ColumnName="Id_persona_curso" />
+          <ScalarProperty Name="id_curso" ColumnName="id_curso" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalles_usuario">
+      <EntityTypeMapping TypeName="dbfunlamModel.detalles_usuario">
+        <MappingFragment StoreEntitySet="detalles_usuario">
+          <ScalarProperty Name="id_programa" ColumnName="id_programa" />
+          <ScalarProperty Name="id_detalle_usuario" ColumnName="id_detalle_usuario" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="deudas">
+      <EntityTypeMapping TypeName="dbfunlamModel.deuda">
+        <MappingFragment StoreEntitySet="deudas">
+          <ScalarProperty Name="id_deuda" ColumnName="id_deuda" />
+          <ScalarProperty Name="tipo_deuda" ColumnName="tipo_deuda" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="fecha_deuda" ColumnName="fecha_deuda" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="liquidaciones">
+      <EntityTypeMapping TypeName="dbfunlamModel.liquidacione">
+        <MappingFragment StoreEntitySet="liquidaciones">
+          <ScalarProperty Name="Id_liquidacion" ColumnName="Id_liquidacion" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="valor_pendiente" ColumnName="valor_pendiente" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fecha_liquidacion" ColumnName="fecha_liquidacion" />
+          <ScalarProperty Name="fecha_vencimiento" ColumnName="fecha_vencimiento" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="materias">
+      <EntityTypeMapping TypeName="dbfunlamModel.materia">
+        <MappingFragment StoreEntitySet="materia">
+          <ScalarProperty Name="Id_materia" ColumnName="Id_materia" />
+          <ScalarProperty Name="nombre_materia" ColumnName="nombre_materia" />
+          <ScalarProperty Name="creditos" ColumnName="creditos" />
+          <ScalarProperty Name="id_programa" ColumnName="id_programa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="modulos">
+      <EntityTypeMapping TypeName="dbfunlamModel.modulo">
+        <MappingFragment StoreEntitySet="modulos">
+          <ScalarProperty Name="id_modulo" ColumnName="id_modulo" />
+          <ScalarProperty Name="nombre_modulo" ColumnName="nombre_modulo" />
+          <ScalarProperty Name="id_claseestilo" ColumnName="id_claseestilo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="plan_financiacion">
+      <EntityTypeMapping TypeName="dbfunlamModel.plan_financiacion">
+        <MappingFragment StoreEntitySet="plan_financiacion">
+          <ScalarProperty Name="id_plan_financiacion" ColumnName="id_plan_financiacion" />
+          <ScalarProperty Name="tipo_financiacion" ColumnName="tipo_financiacion" />
+          <ScalarProperty Name="calculo" ColumnName="calculo" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="id_usuarios" ColumnName="id_usuarios" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="programas">
+      <EntityTypeMapping TypeName="dbfunlamModel.programa">
+        <MappingFragment StoreEntitySet="programas">
+          <ScalarProperty Name="Id_programa" ColumnName="Id_programa" />
+          <ScalarProperty Name="nombre_programa" ColumnName="nombre_programa" />
+          <ScalarProperty Name="sniess" ColumnName="sniess" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="recaudoes">
+      <EntityTypeMapping TypeName="dbfunlamModel.recaudo">
+        <MappingFragment StoreEntitySet="recaudo">
+          <ScalarProperty Name="id_recaudos" ColumnName="id_recaudos" />
+          <ScalarProperty Name="fecha_recaudo" ColumnName="fecha_recaudo" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="financiacion" ColumnName="financiacion" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id_liquidacion" ColumnName="id_liquidacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rols">
+      <EntityTypeMapping TypeName="dbfunlamModel.Rol">
+        <MappingFragment StoreEntitySet="Rol">
+          <ScalarProperty Name="Id_rol" ColumnName="Id_rol" />
+          <ScalarProperty Name="Nombre_Rol" ColumnName="Nombre_Rol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="saldos_favor">
+      <EntityTypeMapping TypeName="dbfunlamModel.saldos_favor">
+        <MappingFragment StoreEntitySet="saldos_favor">
+          <ScalarProperty Name="id_saldos_favor" ColumnName="id_saldos_favor" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="valor_aplicado" ColumnName="valor_aplicado" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="dbfunlamModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Id_usuarios" ColumnName="Id_usuarios" />
+          <ScalarProperty Name="Nom_Usuario" ColumnName="Nom_Usuario" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="calendarios">
+      <EntityTypeMapping TypeName="dbfunlamModel.calendario">
+        <MappingFragment StoreEntitySet="calendario">
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="tipo_evento" ColumnName="tipo_evento" />
+          <ScalarProperty Name="id_calendario" ColumnName="id_calendario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="eventos">
+      <EntityTypeMapping TypeName="dbfunlamModel.evento">
+        <MappingFragment StoreEntitySet="eventos">
+          <ScalarProperty Name="descripcion_evento" ColumnName="descripcion_evento" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

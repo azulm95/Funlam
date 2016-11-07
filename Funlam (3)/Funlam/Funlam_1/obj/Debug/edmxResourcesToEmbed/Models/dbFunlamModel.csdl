@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbfunlamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="claseestilo">
+    <Key>
+      <PropertyRef Name="id_claseestilo" />
+    </Key>
+    <Property Name="id_claseestilo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_estilo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="curso">
+    <Key>
+      <PropertyRef Name="Id_curso" />
+    </Key>
+    <Property Name="Id_curso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="total_cupos" Type="Int32" Nullable="false" />
+    <Property Name="cupos_actuales" Type="Int32" Nullable="false" />
+    <Property Name="id_materia" Type="Int32" Nullable="false" />
+    <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_fin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="horario" Type="Time" Nullable="false" Precision="7" />
+    <NavigationProperty Name="materia" Relationship="Self.FK_cursosmateria" FromRole="cursos" ToRole="materia" />
+    <NavigationProperty Name="detalle_persona_curso" Relationship="Self.FK_detalle_persona_cursocursos" FromRole="cursos" ToRole="detalle_persona_curso" />
+    <Property Name="premarticula" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="matricula" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="descuento">
+    <Key>
+      <PropertyRef Name="id_descuento" />
+    </Key>
+    <Property Name="id_descuento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="respuesta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="periodo_academico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_solicitd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuarios" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_descuentosUsuarios" FromRole="descuentos" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="detalle_persona_curso">
+    <Key>
+      <PropertyRef Name="Id_persona_curso" />
+    </Key>
+    <Property Name="Id_persona_curso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_curso" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="curso" Relationship="Self.FK_detalle_persona_cursocursos" FromRole="detalle_persona_curso" ToRole="cursos" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_detalle_persona_cursoUsuarios" FromRole="detalle_persona_curso" ToRole="Usuarios" />
+    <Property Name="estado" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="detalles_usuario">
+    <Key>
+      <PropertyRef Name="id_detalle_usuario" />
+    </Key>
+    <Property Name="id_detalle_usuario" Type="Int32" Nullable="false" />
+    <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cedula" Type="Int64" Nullable="false" />
+    <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_detalles_usuario_Usuarios" FromRole="detalles_usuario" ToRole="Usuarios" />
+    <Property Name="id_programa" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="deuda">
+    <Key>
+      <PropertyRef Name="id_deuda" />
+    </Key>
+    <Property Name="id_deuda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo_deuda" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="observacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="valor" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_deuda" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_deudasUsuarios" FromRole="deudas" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="liquidacione">
+    <Key>
+      <PropertyRef Name="Id_liquidacion" />
+    </Key>
+    <Property Name="Id_liquidacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="valor_pendiente" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_liquidacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fecha_vencimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_liquidacionUsuarios" FromRole="liquidaciones" ToRole="Usuarios" />
+    <NavigationProperty Name="recaudoes" Relationship="Self.FK_recaudo_liquidaciones" FromRole="liquidaciones" ToRole="recaudo" />
+  </EntityType>
+  <EntityType Name="materia">
+    <Key>
+      <PropertyRef Name="Id_materia" />
+    </Key>
+    <Property Name="Id_materia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_materia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="creditos" Type="Int32" Nullable="false" />
+    <Property Name="id_programa" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cursos" Relationship="Self.FK_cursosmateria" FromRole="materia" ToRole="cursos" />
+    <NavigationProperty Name="programa" Relationship="Self.FK_materiaprogramas" FromRole="materia" ToRole="programas" />
+  </EntityType>
+  <EntityType Name="modulo">
+    <Key>
+      <PropertyRef Name="id_modulo" />
+    </Key>
+    <Property Name="id_modulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_modulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_claseestilo" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="plan_financiacion">
+    <Key>
+      <PropertyRef Name="id_plan_financiacion" />
+    </Key>
+    <Property Name="id_plan_financiacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo_financiacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="calculo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="valor" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_usuarios" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_plan_financiacionUsuarios" FromRole="plan_financiacion" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="programa">
+    <Key>
+      <PropertyRef Name="Id_programa" />
+    </Key>
+    <Property Name="Id_programa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_programa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sniess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="materias" Relationship="Self.FK_materiaprogramas" FromRole="programas" ToRole="materia" />
+  </EntityType>
+  <EntityType Name="recaudo">
+    <Key>
+      <PropertyRef Name="id_recaudos" />
+    </Key>
+    <Property Name="id_recaudos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha_recaudo" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="valor" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="financiacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="id_liquidacion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="liquidacione" Relationship="Self.FK_recaudo_liquidaciones" FromRole="recaudo" ToRole="liquidaciones" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="Id_rol" />
+    </Key>
+    <Property Name="Id_rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.fk_usuario_rol" FromRole="Rol" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="saldos_favor">
+    <Key>
+      <PropertyRef Name="id_saldos_favor" />
+    </Key>
+    <Property Name="id_saldos_favor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="valor_aplicado" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_saldos_favor_Usuarios" FromRole="saldos_favor" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id_usuarios" />
+    </Key>
+    <Property Name="Id_usuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom_Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Clave" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Rol" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="descuentos" Relationship="Self.FK_descuentosUsuarios" FromRole="Usuarios" ToRole="descuentos" />
+    <NavigationProperty Name="detalle_persona_curso" Relationship="Self.FK_detalle_persona_cursoUsuarios" FromRole="Usuarios" ToRole="detalle_persona_curso" />
+    <NavigationProperty Name="detalles_usuario" Relationship="Self.FK_detalles_usuario_Usuarios" FromRole="Usuarios" ToRole="detalles_usuario" />
+    <NavigationProperty Name="deudas" Relationship="Self.FK_deudasUsuarios" FromRole="Usuarios" ToRole="deudas" />
+    <NavigationProperty Name="liquidaciones" Relationship="Self.FK_liquidacionUsuarios" FromRole="Usuarios" ToRole="liquidaciones" />
+    <NavigationProperty Name="plan_financiacion" Relationship="Self.FK_plan_financiacionUsuarios" FromRole="Usuarios" ToRole="plan_financiacion" />
+    <NavigationProperty Name="Rol1" Relationship="Self.fk_usuario_rol" FromRole="Usuarios" ToRole="Rol" />
+    <NavigationProperty Name="saldos_favor" Relationship="Self.FK_saldos_favor_Usuarios" FromRole="Usuarios" ToRole="saldos_favor" />
+  </EntityType>
+  <Association Name="FK_cursosmateria">
+    <End Role="materia" Type="Self.materia" Multiplicity="1" />
+    <End Role="cursos" Type="Self.curso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="materia">
+        <PropertyRef Name="Id_materia" />
+      </Principal>
+      <Dependent Role="cursos">
+        <PropertyRef Name="id_materia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_detalle_persona_cursocursos">
+    <End Role="cursos" Type="Self.curso" Multiplicity="1" />
+    <End Role="detalle_persona_curso" Type="Self.detalle_persona_curso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cursos">
+        <PropertyRef Name="Id_curso" />
+      </Principal>
+      <Dependent Role="detalle_persona_curso">
+        <PropertyRef Name="id_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_descuentosUsuarios">
+    <End Role="Usuarios" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="descuentos" Type="Self.descuento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="descuentos">
+        <PropertyRef Name="id_usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_detalle_persona_cursoUsuarios">
+    <End Role="Usuarios" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="detalle_persona_curso" Type="Self.detalle_persona_curso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="detalle_persona_curso">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_detalles_usuario_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="detalles_usuario" Type="Self.detalles_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="detalles_usuario">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_deudasUsuarios">
+    <End Role="Usuarios" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="deudas" Type="Self.deuda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="deudas">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_liquidacionUsuarios">
+    <End Role="Usuarios" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="liquidaciones" Type="Self.liquidacione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="liquidaciones">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recaudo_liquidaciones">
+    <End Role="liquidaciones" Type="Self.liquidacione" Multiplicity="1" />
+    <End Role="recaudo" Type="Self.recaudo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="liquidaciones">
+        <PropertyRef Name="Id_liquidacion" />
+      </Principal>
+      <Dependent Role="recaudo">
+        <PropertyRef Name="id_liquidacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_materiaprogramas">
+    <End Role="programas" Type="Self.programa" Multiplicity="1" />
+    <End Role="materia" Type="Self.materia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="programas">
+        <PropertyRef Name="Id_programa" />
+      </Principal>
+      <Dependent Role="materia">
+        <PropertyRef Name="id_programa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_plan_financiacionUsuarios">
+    <End Role="Usuarios" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="plan_financiacion" Type="Self.plan_financiacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="plan_financiacion">
+        <PropertyRef Name="id_usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_usuario_rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id_rol" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="Rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_saldos_favor_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="saldos_favor" Type="Self.saldos_favor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="saldos_favor">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbfunlamEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="claseestilos" EntityType="Self.claseestilo" />
+    <EntitySet Name="cursos" EntityType="Self.curso" />
+    <EntitySet Name="descuentos" EntityType="Self.descuento" />
+    <EntitySet Name="detalle_persona_curso" EntityType="Self.detalle_persona_curso" />
+    <EntitySet Name="detalles_usuario" EntityType="Self.detalles_usuario" />
+    <EntitySet Name="deudas" EntityType="Self.deuda" />
+    <EntitySet Name="liquidaciones" EntityType="Self.liquidacione" />
+    <EntitySet Name="materias" EntityType="Self.materia" />
+    <EntitySet Name="modulos" EntityType="Self.modulo" />
+    <EntitySet Name="plan_financiacion" EntityType="Self.plan_financiacion" />
+    <EntitySet Name="programas" EntityType="Self.programa" />
+    <EntitySet Name="recaudoes" EntityType="Self.recaudo" />
+    <EntitySet Name="Rols" EntityType="Self.Rol" />
+    <EntitySet Name="saldos_favor" EntityType="Self.saldos_favor" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK_cursosmateria" Association="Self.FK_cursosmateria">
+      <End Role="materia" EntitySet="materias" />
+      <End Role="cursos" EntitySet="cursos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_detalle_persona_cursocursos" Association="Self.FK_detalle_persona_cursocursos">
+      <End Role="cursos" EntitySet="cursos" />
+      <End Role="detalle_persona_curso" EntitySet="detalle_persona_curso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_descuentosUsuarios" Association="Self.FK_descuentosUsuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="descuentos" EntitySet="descuentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_detalle_persona_cursoUsuarios" Association="Self.FK_detalle_persona_cursoUsuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="detalle_persona_curso" EntitySet="detalle_persona_curso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_detalles_usuario_Usuarios" Association="Self.FK_detalles_usuario_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="detalles_usuario" EntitySet="detalles_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_deudasUsuarios" Association="Self.FK_deudasUsuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="deudas" EntitySet="deudas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_liquidacionUsuarios" Association="Self.FK_liquidacionUsuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="liquidaciones" EntitySet="liquidaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recaudo_liquidaciones" Association="Self.FK_recaudo_liquidaciones">
+      <End Role="liquidaciones" EntitySet="liquidaciones" />
+      <End Role="recaudo" EntitySet="recaudoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_materiaprogramas" Association="Self.FK_materiaprogramas">
+      <End Role="programas" EntitySet="programas" />
+      <End Role="materia" EntitySet="materias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_plan_financiacionUsuarios" Association="Self.FK_plan_financiacionUsuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="plan_financiacion" EntitySet="plan_financiacion" />
+    </AssociationSet>
+    <AssociationSet Name="fk_usuario_rol" Association="Self.fk_usuario_rol">
+      <End Role="Rol" EntitySet="Rols" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_saldos_favor_Usuarios" Association="Self.FK_saldos_favor_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="saldos_favor" EntitySet="saldos_favor" />
+    </AssociationSet>
+    <EntitySet Name="calendarios" EntityType="dbfunlamModel.calendario" />
+    <EntitySet Name="eventos" EntityType="dbfunlamModel.evento" />
+    <AssociationSet Name="FK_calendario_evento" Association="dbfunlamModel.FK_calendario_evento">
+      <End Role="evento" EntitySet="eventos" />
+      <End Role="calendario" EntitySet="calendarios" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="calendario">
+    <Key>
+      <PropertyRef Name="id_calendario" />
+    </Key>
+    <Property Name="id_calendario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo_evento" Type="Int32" Nullable="false" />
+    <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="evento" Relationship="dbfunlamModel.FK_calendario_evento" FromRole="calendario" ToRole="evento" />
+  </EntityType>
+  <EntityType Name="evento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion_evento" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="calendario" Relationship="dbfunlamModel.FK_calendario_evento" FromRole="evento" ToRole="calendario" />
+  </EntityType>
+  <Association Name="FK_calendario_evento">
+    <End Type="dbfunlamModel.evento" Role="evento" Multiplicity="1" />
+    <End Type="dbfunlamModel.calendario" Role="calendario" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="evento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="calendario">
+        <PropertyRef Name="id_calendario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Funlam_1.Models.plan_financiacion>
+
+@{
+    ViewBag.Title = "Plan_Financiacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Plan_Financiacion</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo_financiacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.calculo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_financiacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.calculo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+    </tr>
+}
+
+</table>

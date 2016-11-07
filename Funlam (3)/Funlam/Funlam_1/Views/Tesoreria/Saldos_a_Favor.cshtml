@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Funlam_1.Models.saldos_favor>
+
+@{
+    ViewBag.Title = "Saldos_a_Favor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Saldos_a_Favor</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.observaciones)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valor_aplicado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_factura.tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_recaudo.tipo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.observaciones)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valor_aplicado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_factura.tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_recaudo.tipo)
+        </td>
+       
+    </tr>
+}
+
+</table>

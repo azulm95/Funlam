@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbfunlam" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_claseestilos">
+    <Key>
+      <PropertyRef Name="id_claseestilo" />
+    </Key>
+    <Property Name="id_claseestilo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_estilo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_cursos">
+    <Key>
+      <PropertyRef Name="Id_curso" />
+    </Key>
+    <Property Name="Id_curso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="total_cupos" Type="Int32" Nullable="false" />
+    <Property Name="cupos_actuales" Type="Int32" Nullable="false" />
+    <Property Name="id_materia" Type="Int32" Nullable="false" />
+    <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_fin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="horario" Type="Time" Nullable="false" Precision="7" />
+    <NavigationProperty Name="tbl_materia" Relationship="Self.FK_tbl_cursostbl_materia" FromRole="tbl_cursos" ToRole="tbl_materia" />
+    <NavigationProperty Name="tbl_detalle_persona_curso" Relationship="Self.FK_tbl_detalle_persona_cursotbl_cursos" FromRole="tbl_cursos" ToRole="tbl_detalle_persona_curso" />
+  </EntityType>
+  <EntityType Name="tbl_descuentos">
+    <Key>
+      <PropertyRef Name="id_descuento" />
+    </Key>
+    <Property Name="id_descuento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="respuesta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="periodo_academico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_solicitd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuarios" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Usuarios" Relationship="Self.FK_tbl_descuentostbl_Usuarios" FromRole="tbl_descuentos" ToRole="tbl_Usuarios" />
+  </EntityType>
+  <EntityType Name="tbl_detalle_persona_curso">
+    <Key>
+      <PropertyRef Name="Id_detalle_persona_curso" />
+    </Key>
+    <Property Name="Id_detalle_persona_curso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_curso" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_cursos" Relationship="Self.FK_tbl_detalle_persona_cursotbl_cursos" FromRole="tbl_detalle_persona_curso" ToRole="tbl_cursos" />
+    <NavigationProperty Name="tbl_Usuarios" Relationship="Self.FK_tbl_detalle_persona_cursotbl_Usuarios" FromRole="tbl_detalle_persona_curso" ToRole="tbl_Usuarios" />
+  </EntityType>
+  <EntityType Name="tbl_deudas">
+    <Key>
+      <PropertyRef Name="id_deuda" />
+    </Key>
+    <Property Name="id_deuda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo_deuda" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="observacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="valor" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_deuda" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Usuarios" Relationship="Self.FK_tbl_deudastbl_Usuarios" FromRole="tbl_deudas" ToRole="tbl_Usuarios" />
+  </EntityType>
+  <EntityType Name="tbl_factura">
+    <Key>
+      <PropertyRef Name="id_factura" />
+    </Key>
+    <Property Name="id_factura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="valor" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_liquidacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_vencimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="valor_pendiente" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Usuarios" Relationship="Self.FK_tbl_facturatbl_Usuarios" FromRole="tbl_factura" ToRole="tbl_Usuarios" />
+    <NavigationProperty Name="tbl_liquidaciones" Relationship="Self.FK_tbl_liquidaciones_tbl_factura" FromRole="tbl_factura" ToRole="tbl_liquidaciones" />
+    <NavigationProperty Name="tbl_saldos_favor" Relationship="Self.FK_tbl_saldos_favor_tbl_factura" FromRole="tbl_factura" ToRole="tbl_saldos_favor" />
+  </EntityType>
+  <EntityType Name="tbl_liquidaciones">
+    <Key>
+      <PropertyRef Name="Id_liquidacion" />
+    </Key>
+    <Property Name="Id_liquidacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_factura" Type="Int32" Nullable="false" />
+    <Property Name="tipo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fecha_liquidacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_factura" Relationship="Self.FK_tbl_liquidaciones_tbl_factura" FromRole="tbl_liquidaciones" ToRole="tbl_factura" />
+  </EntityType>
+  <EntityType Name="tbl_materia">
+    <Key>
+      <PropertyRef Name="Id_materia" />
+    </Key>
+    <Property Name="Id_materia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_materia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="creditos" Type="Int32" Nullable="false" />
+    <Property Name="id_programa" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_cursos" Relationship="Self.FK_tbl_cursostbl_materia" FromRole="tbl_materia" ToRole="tbl_cursos" />
+    <NavigationProperty Name="tbl_programas" Relationship="Self.FK_tbl_materiatbl_programas" FromRole="tbl_materia" ToRole="tbl_programas" />
+  </EntityType>
+  <EntityType Name="tbl_modulos">
+    <Key>
+      <PropertyRef Name="id_modulo" />
+    </Key>
+    <Property Name="id_modulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_modulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_claseestilo" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_plan_financiacion">
+    <Key>
+      <PropertyRef Name="id_plan_financiacion" />
+    </Key>
+    <Property Name="id_plan_financiacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo_financiacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="calculo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="valor" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_usuarios" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Usuarios" Relationship="Self.FK_tbl_plan_financiaciontbl_Usuarios" FromRole="tbl_plan_financiacion" ToRole="tbl_Usuarios" />
+  </EntityType>
+  <EntityType Name="tbl_programas">
+    <Key>
+      <PropertyRef Name="Id_programa" />
+    </Key>
+    <Property Name="Id_programa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_programa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sniess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbl_materia" Relationship="Self.FK_tbl_materiatbl_programas" FromRole="tbl_programas" ToRole="tbl_materia" />
+  </EntityType>
+  <EntityType Name="tbl_recaudo">
+    <Key>
+      <PropertyRef Name="id_recaudos" />
+    </Key>
+    <Property Name="id_recaudos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha_recaudo" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="valor" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="financiacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_saldos_favor" Relationship="Self.FK_tbl_saldos_favor_tbl_recaudo" FromRole="tbl_recaudo" ToRole="tbl_saldos_favor" />
+  </EntityType>
+  <EntityType Name="tbl_Rol">
+    <Key>
+      <PropertyRef Name="Id_rol" />
+    </Key>
+    <Property Name="Id_rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_Usuarios" Relationship="Self.fk_usuario_rol" FromRole="tbl_Rol" ToRole="tbl_Usuarios" />
+  </EntityType>
+  <EntityType Name="tbl_saldos_favor">
+    <Key>
+      <PropertyRef Name="id_saldos_favor" />
+    </Key>
+    <Property Name="id_saldos_favor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_factura" Type="Int32" Nullable="false" />
+    <Property Name="id_recaudo" Type="Int32" Nullable="false" />
+    <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="valor_aplicado" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_factura" Relationship="Self.FK_tbl_saldos_favor_tbl_factura" FromRole="tbl_saldos_favor" ToRole="tbl_factura" />
+    <NavigationProperty Name="tbl_recaudo" Relationship="Self.FK_tbl_saldos_favor_tbl_recaudo" FromRole="tbl_saldos_favor" ToRole="tbl_recaudo" />
+  </EntityType>
+  <EntityType Name="tbl_Usuarios">
+    <Key>
+      <PropertyRef Name="Id_usuarios" />
+    </Key>
+    <Property Name="Id_usuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom_Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Clave" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Rol" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_descuentos" Relationship="Self.FK_tbl_descuentostbl_Usuarios" FromRole="tbl_Usuarios" ToRole="tbl_descuentos" />
+    <NavigationProperty Name="tbl_detalle_persona_curso" Relationship="Self.FK_tbl_detalle_persona_cursotbl_Usuarios" FromRole="tbl_Usuarios" ToRole="tbl_detalle_persona_curso" />
+    <NavigationProperty Name="tbl_deudas" Relationship="Self.FK_tbl_deudastbl_Usuarios" FromRole="tbl_Usuarios" ToRole="tbl_deudas" />
+    <NavigationProperty Name="tbl_factura" Relationship="Self.FK_tbl_facturatbl_Usuarios" FromRole="tbl_Usuarios" ToRole="tbl_factura" />
+    <NavigationProperty Name="tbl_plan_financiacion" Relationship="Self.FK_tbl_plan_financiaciontbl_Usuarios" FromRole="tbl_Usuarios" ToRole="tbl_plan_financiacion" />
+    <NavigationProperty Name="tbl_Rol" Relationship="Self.fk_usuario_rol" FromRole="tbl_Usuarios" ToRole="tbl_Rol" />
+    <NavigationProperty Name="tbl_detalles_usuario" Relationship="dbfunlam.FK_tbl_detalles_usuario_tbl_Usuarios" FromRole="tbl_Usuarios" ToRole="tbl_detalles_usuario" />
+  </EntityType>
+  <Association Name="FK_tbl_cursostbl_materia">
+    <End Role="tbl_materia" Type="Self.tbl_materia" Multiplicity="1" />
+    <End Role="tbl_cursos" Type="Self.tbl_cursos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_materia">
+        <PropertyRef Name="Id_materia" />
+      </Principal>
+      <Dependent Role="tbl_cursos">
+        <PropertyRef Name="id_materia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_detalle_persona_cursotbl_cursos">
+    <End Role="tbl_cursos" Type="Self.tbl_cursos" Multiplicity="1" />
+    <End Role="tbl_detalle_persona_curso" Type="Self.tbl_detalle_persona_curso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_cursos">
+        <PropertyRef Name="Id_curso" />
+      </Principal>
+      <Dependent Role="tbl_detalle_persona_curso">
+        <PropertyRef Name="id_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_descuentostbl_Usuarios">
+    <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="1" />
+    <End Role="tbl_descuentos" Type="Self.tbl_descuentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="tbl_descuentos">
+        <PropertyRef Name="id_usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_detalle_persona_cursotbl_Usuarios">
+    <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="1" />
+    <End Role="tbl_detalle_persona_curso" Type="Self.tbl_detalle_persona_curso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="tbl_detalle_persona_curso">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_deudastbl_Usuarios">
+    <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="1" />
+    <End Role="tbl_deudas" Type="Self.tbl_deudas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="tbl_deudas">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_facturatbl_Usuarios">
+    <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="1" />
+    <End Role="tbl_factura" Type="Self.tbl_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="tbl_factura">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_liquidaciones_tbl_factura">
+    <End Role="tbl_factura" Type="Self.tbl_factura" Multiplicity="1" />
+    <End Role="tbl_liquidaciones" Type="Self.tbl_liquidaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_factura">
+        <PropertyRef Name="id_factura" />
+      </Principal>
+      <Dependent Role="tbl_liquidaciones">
+        <PropertyRef Name="id_factura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_saldos_favor_tbl_factura">
+    <End Role="tbl_factura" Type="Self.tbl_factura" Multiplicity="1" />
+    <End Role="tbl_saldos_favor" Type="Self.tbl_saldos_favor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_factura">
+        <PropertyRef Name="id_factura" />
+      </Principal>
+      <Dependent Role="tbl_saldos_favor">
+        <PropertyRef Name="id_factura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_materiatbl_programas">
+    <End Role="tbl_programas" Type="Self.tbl_programas" Multiplicity="1" />
+    <End Role="tbl_materia" Type="Self.tbl_materia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_programas">
+        <PropertyRef Name="Id_programa" />
+      </Principal>
+      <Dependent Role="tbl_materia">
+        <PropertyRef Name="id_programa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_plan_financiaciontbl_Usuarios">
+    <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="1" />
+    <End Role="tbl_plan_financiacion" Type="Self.tbl_plan_financiacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="tbl_plan_financiacion">
+        <PropertyRef Name="id_usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_saldos_favor_tbl_recaudo">
+    <End Role="tbl_recaudo" Type="Self.tbl_recaudo" Multiplicity="1" />
+    <End Role="tbl_saldos_favor" Type="Self.tbl_saldos_favor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_recaudo">
+        <PropertyRef Name="id_recaudos" />
+      </Principal>
+      <Dependent Role="tbl_saldos_favor">
+        <PropertyRef Name="id_recaudo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_usuario_rol">
+    <End Role="tbl_Rol" Type="Self.tbl_Rol" Multiplicity="1" />
+    <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Rol">
+        <PropertyRef Name="Id_rol" />
+      </Principal>
+      <Dependent Role="tbl_Usuarios">
+        <PropertyRef Name="Rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbfunlamEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_claseestilos" EntityType="Self.tbl_claseestilos" />
+    <EntitySet Name="tbl_cursos" EntityType="Self.tbl_cursos" />
+    <EntitySet Name="tbl_descuentos" EntityType="Self.tbl_descuentos" />
+    <EntitySet Name="tbl_detalle_persona_curso" EntityType="Self.tbl_detalle_persona_curso" />
+    <EntitySet Name="tbl_deudas" EntityType="Self.tbl_deudas" />
+    <EntitySet Name="tbl_factura" EntityType="Self.tbl_factura" />
+    <EntitySet Name="tbl_liquidaciones" EntityType="Self.tbl_liquidaciones" />
+    <EntitySet Name="tbl_materia" EntityType="Self.tbl_materia" />
+    <EntitySet Name="tbl_modulos" EntityType="Self.tbl_modulos" />
+    <EntitySet Name="tbl_plan_financiacion" EntityType="Self.tbl_plan_financiacion" />
+    <EntitySet Name="tbl_programas" EntityType="Self.tbl_programas" />
+    <EntitySet Name="tbl_recaudo" EntityType="Self.tbl_recaudo" />
+    <EntitySet Name="tbl_Rol" EntityType="Self.tbl_Rol" />
+    <EntitySet Name="tbl_saldos_favor" EntityType="Self.tbl_saldos_favor" />
+    <EntitySet Name="tbl_Usuarios" EntityType="Self.tbl_Usuarios" />
+    <AssociationSet Name="FK_tbl_cursostbl_materia" Association="Self.FK_tbl_cursostbl_materia">
+      <End Role="tbl_materia" EntitySet="tbl_materia" />
+      <End Role="tbl_cursos" EntitySet="tbl_cursos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_detalle_persona_cursotbl_cursos" Association="Self.FK_tbl_detalle_persona_cursotbl_cursos">
+      <End Role="tbl_cursos" EntitySet="tbl_cursos" />
+      <End Role="tbl_detalle_persona_curso" EntitySet="tbl_detalle_persona_curso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_descuentostbl_Usuarios" Association="Self.FK_tbl_descuentostbl_Usuarios">
+      <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+      <End Role="tbl_descuentos" EntitySet="tbl_descuentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_detalle_persona_cursotbl_Usuarios" Association="Self.FK_tbl_detalle_persona_cursotbl_Usuarios">
+      <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+      <End Role="tbl_detalle_persona_curso" EntitySet="tbl_detalle_persona_curso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_deudastbl_Usuarios" Association="Self.FK_tbl_deudastbl_Usuarios">
+      <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+      <End Role="tbl_deudas" EntitySet="tbl_deudas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_facturatbl_Usuarios" Association="Self.FK_tbl_facturatbl_Usuarios">
+      <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+      <End Role="tbl_factura" EntitySet="tbl_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_liquidaciones_tbl_factura" Association="Self.FK_tbl_liquidaciones_tbl_factura">
+      <End Role="tbl_factura" EntitySet="tbl_factura" />
+      <End Role="tbl_liquidaciones" EntitySet="tbl_liquidaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_saldos_favor_tbl_factura" Association="Self.FK_tbl_saldos_favor_tbl_factura">
+      <End Role="tbl_factura" EntitySet="tbl_factura" />
+      <End Role="tbl_saldos_favor" EntitySet="tbl_saldos_favor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_materiatbl_programas" Association="Self.FK_tbl_materiatbl_programas">
+      <End Role="tbl_programas" EntitySet="tbl_programas" />
+      <End Role="tbl_materia" EntitySet="tbl_materia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_plan_financiaciontbl_Usuarios" Association="Self.FK_tbl_plan_financiaciontbl_Usuarios">
+      <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+      <End Role="tbl_plan_financiacion" EntitySet="tbl_plan_financiacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_saldos_favor_tbl_recaudo" Association="Self.FK_tbl_saldos_favor_tbl_recaudo">
+      <End Role="tbl_recaudo" EntitySet="tbl_recaudo" />
+      <End Role="tbl_saldos_favor" EntitySet="tbl_saldos_favor" />
+    </AssociationSet>
+    <AssociationSet Name="fk_usuario_rol" Association="Self.fk_usuario_rol">
+      <End Role="tbl_Rol" EntitySet="tbl_Rol" />
+      <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="dbfunlam.sysdiagrams" />
+    <EntitySet Name="tbl_detalles_usuario" EntityType="dbfunlam.tbl_detalles_usuario" />
+    <AssociationSet Name="FK_tbl_detalles_usuario_tbl_Usuarios" Association="dbfunlam.FK_tbl_detalles_usuario_tbl_Usuarios">
+      <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+      <End Role="tbl_detalles_usuario" EntitySet="tbl_detalles_usuario" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_detalles_usuario">
+    <Key>
+      <PropertyRef Name="id_detalle_usuario" />
+    </Key>
+    <Property Name="id_detalle_usuario" Type="Int32" Nullable="false" />
+    <Property Name="nombres" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="apellidos" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cedula" Type="Int64" Nullable="false" />
+    <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Usuarios" Relationship="dbfunlam.FK_tbl_detalles_usuario_tbl_Usuarios" FromRole="tbl_detalles_usuario" ToRole="tbl_Usuarios" />
+  </EntityType>
+  <Association Name="FK_tbl_detalles_usuario_tbl_Usuarios">
+    <End Type="dbfunlam.tbl_Usuarios" Role="tbl_Usuarios" Multiplicity="1" />
+    <End Type="dbfunlam.tbl_detalles_usuario" Role="tbl_detalles_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="tbl_detalles_usuario">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

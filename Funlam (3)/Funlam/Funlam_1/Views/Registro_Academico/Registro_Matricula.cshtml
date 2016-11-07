@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Funlam_1.Models.detalle_persona_curso>
+
+@{
+    ViewBag.Title = "Registro_Matricula";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Registro_Matricula</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.curso.total_cupos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.curso.cupos_actuales)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.curso.fecha_inicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.curso.fecha_fin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.curso.horario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.curso.materia.nombre_materia)
+        </th>
+        <th>
+            Ver Informacion
+        </th>
+    </tr>
+{
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.curso.total_cupos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.curso.cupos_actuales)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.curso.fecha_inicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.curso.fecha_fin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.curso.horario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.curso.materia.nombre_materia)
+                </td>
+
+                <td>
+                    <a id="detalle" data-toggle="modal" href="#ddetallemateriamodal" data-id="@item.id_curso" class="btn btn-primary btn-large">Informacion</a>
+                </td>
+
+
+            </tr>
+        }
+    
+
+</table>
+
+
+<div class="modal fade bs-example-modal-lg" id="ddetallemateriamodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Detalles De liquidacion</h4>
+            </div>
+            <div class="modal-body">
+                <div class="detallemateria"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="aplicar" class="btn btn-danger">Aplicar</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

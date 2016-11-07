@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Funlam_1.Models.liquidacione>
+
+<h4>Conceptos de Liquidacion</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valor_pendiente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_liquidacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_vencimiento)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valor_pendiente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_liquidacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_vencimiento)
+        </td>
+    </tr>
+}
+
+</table>

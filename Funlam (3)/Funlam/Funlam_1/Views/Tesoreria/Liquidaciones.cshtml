@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Funlam_1.Models.liquidacione>
+
+@{
+    ViewBag.Title = "Liquidaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Liquidaciones</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_liquidacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_liquidacion)
+        </th>
+        <th>
+          Detalles liquidacion
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_liquidacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_liquidacion)
+        </td>
+       <td>
+           <a id="detalle" data-toggle="modal" href="#ddetalleliquidacionmodal" data-id="@item.Id_liquidacion" class="btn btn-primary btn-large">Detalles de Liquidacion</a>
+        </td>
+    </tr>
+}
+
+</table>
+<div class="modal fade bs-example-modal-lg" id="detalleliquidacionmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Detalles De liquidacion</h4>
+            </div>
+            <div class="modal-body">
+               <div class="encabezadofactura"></div>
+                <div  class="cuerpoliquidacion"></div>
+                <div class="pieliquidacion"></div>  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $('#detalle').click(function () {
+        var idfactura = $(this).attr('data-id')
+        $("#detalleliquidacionmodal").modal("show");
+        $(".encabezadofactura").load("/Tesoreria/GetDetallesUser", {id: idfactura })
+        $(".cuerpoliquidacion").load("/Tesoreria/GetDetallesLiquidacion", {id: idfactura })
+        $(".pieliquidacion").load("/Tesoreria/GetDetallesRecaudo", {id: idfactura })
+                })
+</script>
+

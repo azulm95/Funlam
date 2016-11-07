@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbfunlamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="calendario">
+    <Key>
+      <PropertyRef Name="id_calendario" />
+    </Key>
+    <Property Name="id_calendario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo_evento" Type="int" Nullable="false" />
+    <Property Name="fecha_inicio" Type="date" Nullable="false" />
+    <Property Name="fecha_fin" Type="date" Nullable="false" />
+    <Property Name="descripcion" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="claseestilos">
+    <Key>
+      <PropertyRef Name="id_claseestilo" />
+    </Key>
+    <Property Name="id_claseestilo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_estilo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="cursos">
+    <Key>
+      <PropertyRef Name="Id_curso" />
+    </Key>
+    <Property Name="Id_curso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="total_cupos" Type="int" Nullable="false" />
+    <Property Name="cupos_actuales" Type="int" Nullable="false" />
+    <Property Name="id_materia" Type="int" Nullable="false" />
+    <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
+    <Property Name="fecha_fin" Type="datetime" Nullable="false" />
+    <Property Name="horario" Type="time" Precision="7" Nullable="false" />
+    <Property Name="premarticula" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="matricula" Type="varchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="descuentos">
+    <Key>
+      <PropertyRef Name="id_descuento" />
+    </Key>
+    <Property Name="id_descuento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="respuesta" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="estado" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="periodo_academico" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_solicitd" Type="datetime" Nullable="false" />
+    <Property Name="id_usuarios" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="detalle_persona_curso">
+    <Key>
+      <PropertyRef Name="Id_persona_curso" />
+    </Key>
+    <Property Name="Id_persona_curso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_curso" Type="int" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+    <Property Name="estado" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="detalles_usuario">
+    <Key>
+      <PropertyRef Name="id_detalle_usuario" />
+    </Key>
+    <Property Name="id_detalle_usuario" Type="int" Nullable="false" />
+    <Property Name="nombres" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="apellidos" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="cedula" Type="bigint" Nullable="false" />
+    <Property Name="fecha_nacimiento" Type="datetime" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+    <Property Name="id_programa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="deudas">
+    <Key>
+      <PropertyRef Name="id_deuda" />
+    </Key>
+    <Property Name="id_deuda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo_deuda" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="observacion" Type="varchar(max)" Nullable="false" />
+    <Property Name="valor" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="estado" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_deuda" Type="datetime" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="eventos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion_evento" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="liquidaciones">
+    <Key>
+      <PropertyRef Name="Id_liquidacion" />
+    </Key>
+    <Property Name="Id_liquidacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="estado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="valor_pendiente" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="descripcion" Type="varchar(max)" Nullable="false" />
+    <Property Name="fecha_liquidacion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fecha_vencimiento" Type="datetime" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="materia">
+    <Key>
+      <PropertyRef Name="Id_materia" />
+    </Key>
+    <Property Name="Id_materia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_materia" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="creditos" Type="int" Nullable="false" />
+    <Property Name="id_programa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="modulos">
+    <Key>
+      <PropertyRef Name="id_modulo" />
+    </Key>
+    <Property Name="id_modulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_modulo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_claseestilo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="plan_financiacion">
+    <Key>
+      <PropertyRef Name="id_plan_financiacion" />
+    </Key>
+    <Property Name="id_plan_financiacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo_financiacion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="calculo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="valor" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="estado" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="id_usuarios" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="programas">
+    <Key>
+      <PropertyRef Name="Id_programa" />
+    </Key>
+    <Property Name="Id_programa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_programa" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="sniess" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="recaudo">
+    <Key>
+      <PropertyRef Name="id_recaudos" />
+    </Key>
+    <Property Name="id_recaudos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha_recaudo" Type="datetime" Nullable="false" />
+    <Property Name="valor" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="tipo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="estado" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="financiacion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripcion" Type="varchar(max)" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+    <Property Name="id_liquidacion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="Id_rol" />
+    </Key>
+    <Property Name="Id_rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_Rol" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="saldos_favor">
+    <Key>
+      <PropertyRef Name="id_saldos_favor" />
+    </Key>
+    <Property Name="id_saldos_favor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="observaciones" Type="varchar(max)" Nullable="false" />
+    <Property Name="valor_aplicado" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="estado" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="Id_usuarios" />
+    </Key>
+    <Property Name="Id_usuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Clave" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Rol" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_calendario_evento">
+    <End Role="eventos" Type="Self.eventos" Multiplicity="1" />
+    <End Role="calendario" Type="Self.calendario" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="eventos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="calendario">
+        <PropertyRef Name="id_calendario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cursosmateria">
+    <End Role="materia" Type="Self.materia" Multiplicity="1" />
+    <End Role="cursos" Type="Self.cursos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="materia">
+        <PropertyRef Name="Id_materia" />
+      </Principal>
+      <Dependent Role="cursos">
+        <PropertyRef Name="id_materia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_descuentosUsuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="descuentos" Type="Self.descuentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="descuentos">
+        <PropertyRef Name="id_usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_detalle_persona_cursocursos">
+    <End Role="cursos" Type="Self.cursos" Multiplicity="1" />
+    <End Role="detalle_persona_curso" Type="Self.detalle_persona_curso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cursos">
+        <PropertyRef Name="Id_curso" />
+      </Principal>
+      <Dependent Role="detalle_persona_curso">
+        <PropertyRef Name="id_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_detalle_persona_cursoUsuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="detalle_persona_curso" Type="Self.detalle_persona_curso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="detalle_persona_curso">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_detalles_usuario_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="detalles_usuario" Type="Self.detalles_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="detalles_usuario">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_deudasUsuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="deudas" Type="Self.deudas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="deudas">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_liquidacionUsuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="liquidaciones" Type="Self.liquidaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="liquidaciones">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_materiaprogramas">
+    <End Role="programas" Type="Self.programas" Multiplicity="1" />
+    <End Role="materia" Type="Self.materia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="programas">
+        <PropertyRef Name="Id_programa" />
+      </Principal>
+      <Dependent Role="materia">
+        <PropertyRef Name="id_programa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_plan_financiacionUsuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="plan_financiacion" Type="Self.plan_financiacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="plan_financiacion">
+        <PropertyRef Name="id_usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recaudo_liquidaciones">
+    <End Role="liquidaciones" Type="Self.liquidaciones" Multiplicity="1" />
+    <End Role="recaudo" Type="Self.recaudo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="liquidaciones">
+        <PropertyRef Name="Id_liquidacion" />
+      </Principal>
+      <Dependent Role="recaudo">
+        <PropertyRef Name="id_liquidacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_saldos_favor_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="saldos_favor" Type="Self.saldos_favor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuarios" />
+      </Principal>
+      <Dependent Role="saldos_favor">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_usuario_rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id_rol" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="Rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbfunlamModelStoreContainer">
+    <EntitySet Name="calendario" EntityType="Self.calendario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="claseestilos" EntityType="Self.claseestilos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cursos" EntityType="Self.cursos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="descuentos" EntityType="Self.descuentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="detalle_persona_curso" EntityType="Self.detalle_persona_curso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="detalles_usuario" EntityType="Self.detalles_usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="deudas" EntityType="Self.deudas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="eventos" EntityType="Self.eventos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="liquidaciones" EntityType="Self.liquidaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="materia" EntityType="Self.materia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="modulos" EntityType="Self.modulos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="plan_financiacion" EntityType="Self.plan_financiacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="programas" EntityType="Self.programas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="recaudo" EntityType="Self.recaudo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="saldos_favor" EntityType="Self.saldos_favor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_calendario_evento" Association="Self.FK_calendario_evento">
+      <End Role="eventos" EntitySet="eventos" />
+      <End Role="calendario" EntitySet="calendario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cursosmateria" Association="Self.FK_cursosmateria">
+      <End Role="materia" EntitySet="materia" />
+      <End Role="cursos" EntitySet="cursos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_descuentosUsuarios" Association="Self.FK_descuentosUsuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="descuentos" EntitySet="descuentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_detalle_persona_cursocursos" Association="Self.FK_detalle_persona_cursocursos">
+      <End Role="cursos" EntitySet="cursos" />
+      <End Role="detalle_persona_curso" EntitySet="detalle_persona_curso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_detalle_persona_cursoUsuarios" Association="Self.FK_detalle_persona_cursoUsuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="detalle_persona_curso" EntitySet="detalle_persona_curso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_detalles_usuario_Usuarios" Association="Self.FK_detalles_usuario_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="detalles_usuario" EntitySet="detalles_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_deudasUsuarios" Association="Self.FK_deudasUsuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="deudas" EntitySet="deudas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_liquidacionUsuarios" Association="Self.FK_liquidacionUsuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="liquidaciones" EntitySet="liquidaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_materiaprogramas" Association="Self.FK_materiaprogramas">
+      <End Role="programas" EntitySet="programas" />
+      <End Role="materia" EntitySet="materia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_plan_financiacionUsuarios" Association="Self.FK_plan_financiacionUsuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="plan_financiacion" EntitySet="plan_financiacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recaudo_liquidaciones" Association="Self.FK_recaudo_liquidaciones">
+      <End Role="liquidaciones" EntitySet="liquidaciones" />
+      <End Role="recaudo" EntitySet="recaudo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_saldos_favor_Usuarios" Association="Self.FK_saldos_favor_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="saldos_favor" EntitySet="saldos_favor" />
+    </AssociationSet>
+    <AssociationSet Name="fk_usuario_rol" Association="Self.fk_usuario_rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
